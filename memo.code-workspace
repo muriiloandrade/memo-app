@@ -3,6 +3,9 @@
 		{
 			"path": "account-api"
 		},
+		{
+			"path": "config"
+		}
 	],
 	"settings": {}
 }
