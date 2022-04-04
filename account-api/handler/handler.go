@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,7 +20,7 @@ func NewHandler(c *Config) {
 	// Create a handler (which will later have injected services)
 	handler := &Handler{}
 
-	group := c.R.Group("api/account")
+	group := c.R.Group(os.Getenv("ACCOUNT_API_URL"))
 
 	group.GET("/me", handler.Me)
 	group.POST("/signup", handler.SignUp)
