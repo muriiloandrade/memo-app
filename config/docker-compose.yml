@@ -21,6 +21,8 @@ services:
       context: ../account-api
       target: dev
     image: account-api
+    env_file:
+      - ../account-api/.env.dev
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.account-api.entrypoints=web"
