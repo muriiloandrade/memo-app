@@ -1,5 +1,5 @@
 # Create base image with golang
-FROM golang:1.17.8 as base
+FROM golang:1.18-bullseye as base
 
 # Create another stage called "dev" based off of our "base" stage (so we have golang available)
 FROM base as dev
