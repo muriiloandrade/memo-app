@@ -89,7 +89,7 @@ func NotFoundError(name string, value string) *Error {
 	}
 }
 
-func NewPayloadTooLarge(maxBodySize int64, contentLength int64) *Error {
+func PayloadTooLargeError(maxBodySize int64, contentLength int64) *Error {
 	return &Error{
 		Type:    PayloadTooLarge,
 		Message: fmt.Sprintf("Max payload size of %v exceeded. Actual payload size: %v", maxBodySize, contentLength),
