@@ -5,20 +5,26 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/muriiloandrade/memo-app/model"
 )
 
 // Handler struct holds required services for handler to function
-type Handler struct{}
+type Handler struct {
+	UserService model.UserService
+}
 
 // Config will hold services that will eventually be injected
 // into this handler layer on handler initialization
 type Config struct {
-	R *gin.Engine
+	R           *gin.Engine
+	UserService model.UserService
 }
 
 func NewHandler(c *Config) {
 	// Create a handler (which will later have injected services)
-	handler := &Handler{}
+	handler := &Handler{
+		UserService: c.UserService,
+	}
 
 	group := c.R.Group(os.Getenv("ACCOUNT_API_URL"))
 
@@ -30,12 +36,6 @@ func NewHandler(c *Config) {
 	group.POST("/image", handler.Image)
 	group.DELETE("/image", handler.DeleteImage)
 	group.PUT("/details", handler.Details)
-}
-
-func (h *Handler) Me(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"hello": "it's me",
-	})
 }
 
 func (h *Handler) SignUp(ctx *gin.Context) {
